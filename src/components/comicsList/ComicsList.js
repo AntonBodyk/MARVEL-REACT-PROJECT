@@ -8,7 +8,7 @@ import './comicsList.scss';
 const ComicsList = () => {
 
     const [comicsList, setComicsList] = useState([]);
-    const [newItemLoading, setnewItemLoading] = useState(false);
+    const [newComicsLoading, setNewComicsLoading] = useState(false);
     const [offset, setOffset] = useState(0);
     const [comicsEnded, setComicsEnded] = useState(false);
 
@@ -19,7 +19,7 @@ const ComicsList = () => {
     }, [])
 
     const onRequest = (offset, initial) => {
-        initial ? setnewItemLoading(false) : setnewItemLoading(true);
+        initial ? setNewComicsLoading(false) : setNewComicsLoading(true);
         getAllComics(offset)
             .then(onComicsListLoaded)
     }
@@ -30,7 +30,7 @@ const ComicsList = () => {
             ended = true;
         }
         setComicsList([...comicsList, ...newComicsList]);
-        setnewItemLoading(false);
+        setNewComicsLoading(false);
         setOffset(offset + 8);
         setComicsEnded(ended);
     }
@@ -58,7 +58,7 @@ const ComicsList = () => {
     const items = renderItems(comicsList);
 
     const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading && !newItemLoading ? <Spinner/> : null;
+    const spinner = loading && !newComicsLoading ? <Spinner/> : null;
 
     return (
         <div className="comics__list">
@@ -66,7 +66,7 @@ const ComicsList = () => {
             {spinner}
             {items}
             <button 
-                disabled={newItemLoading} 
+                disabled={newComicsLoading} 
                 style={{'display' : comicsEnded ? 'none' : 'block'}}
                 className="button button__main button__long"
                 onClick={() => onRequest(offset)}>
