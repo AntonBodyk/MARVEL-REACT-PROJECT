@@ -11,6 +11,7 @@ const App = ()  => {
                 <AppHeader/>
                 <main>
                 <Routes>
+                    <Route path="/MARVEL-REACT-PROJECT" element={<MainPage/>} />
                     <Route path="/" element={<MainPage/>} />
                     <Route path="/comics" element={<ComicsPage/>} />
                 </Routes>
