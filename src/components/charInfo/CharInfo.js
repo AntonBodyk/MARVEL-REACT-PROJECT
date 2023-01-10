@@ -5,7 +5,7 @@ import ErrorMessage from '../erorrMessage/ErorrMessage';
 import Skeleton from '../skeleton/Skeleton';
 import useMarvelService from '../../services/MarvelService';
 import './charInfo.scss';
-import { clear } from '@testing-library/user-event/dist/clear';
+
 
 const CharInfo = (props) => {
     
