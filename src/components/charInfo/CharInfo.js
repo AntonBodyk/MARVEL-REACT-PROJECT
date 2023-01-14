@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../erorrMessage/ErorrMessage';
 import Skeleton from '../skeleton/Skeleton';
 import useMarvelService from '../../services/MarvelService';
 import './charInfo.scss';
+
 
 
 const CharInfo = (props) => {
@@ -16,7 +18,6 @@ const CharInfo = (props) => {
     useEffect(() => {
         updateChar();
     }, [props.charId]) 
-
     
     const updateChar = () => {
         clearError();
@@ -31,6 +32,7 @@ const CharInfo = (props) => {
     const onCharLoaded = (char) => {
         setChar(char);
     }
+
 
     
         const skeleton = char || loading || error ? null : <Skeleton/>
@@ -50,6 +52,8 @@ const CharInfo = (props) => {
 
 const ViewBlock = ({char}) => {
     const {name, description, thumbnail, homepage, wiki, comics} = char;
+    
+    
 
     let imgStyle = {'objectFit' : 'cover'};
             if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
@@ -79,10 +83,13 @@ const ViewBlock = ({char}) => {
                     {comics.length > 0 ? null : 'Sorry, no information'}
                     {
                         comics.map((item, i) => {
-                            if(i > 9) return;
+                            if(i > 9) return; 
+                            console.log(typeof(item.resourceURI));
                             return (
                                 <li key={i} className="char__comics-item">
-                                    {item.name}
+                                    <Link to={`/comics/${item.resourceURI.slice(43)}`}>
+                                        {item.name}
+                                    </Link>
                                 </li>
                             )
                         })

@@ -11,7 +11,6 @@ const MainPage = () => {
 
     const [selectedChar, setChar] = useState(null);
     
-    
     const onCharSelected = (id) => {
         setChar(id);
     }
@@ -26,7 +25,7 @@ const MainPage = () => {
                         <CharList onCharSelected={onCharSelected}/>
                     </ErrorBoundery>
                     <ErrorBoundery>
-                        <CharInfo charId={selectedChar}/>
+                        <CharInfo charId={selectedChar} />
                     </ErrorBoundery>
                 </div>
                     <img className="bg-decoration" src={decoration} alt="vision"/>
