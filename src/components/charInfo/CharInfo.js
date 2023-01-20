@@ -84,7 +84,6 @@ const ViewBlock = ({char}) => {
                     {
                         comics.map((item, i) => {
                             if(i > 9) return; 
-                            console.log(typeof(item.resourceURI));
                             return (
                                 <li key={i} className="char__comics-item">
                                     <Link to={`/comics/${item.resourceURI.slice(43)}`}>
